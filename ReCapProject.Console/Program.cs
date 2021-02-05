@@ -2,7 +2,6 @@
 using ReCapProject.Business.Concrete;
 using ReCapProject.DataAccess.Concrete.EntityFramework;
 using ReCapProject.DataAccess.Concrete.InMemory;
-using ReCapProject.DataAccess.Concrete.Validation;
 using ReCapProject.Entities.Concrete;
 
 namespace ReCapProject.Console
@@ -11,8 +10,12 @@ namespace ReCapProject.Console
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal(new ValidationDal()));
+            CarManager carManager = new CarManager(new EfCarDal());
 
+            carManager.Add(new Car
+            {
+                BrandId = 2, ColorId = 3, Description = "Fiat", DailyPrice = 155, ModelYear = 2015
+            });
 
             foreach (var car in carManager.GetAll())
             {
