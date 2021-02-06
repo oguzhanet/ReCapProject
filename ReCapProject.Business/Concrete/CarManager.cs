@@ -43,7 +43,10 @@ namespace ReCapProject.Business.Concrete
             {
                 _carDal.Add(car);
             }
-
+            else
+            {
+                throw new Exception("Araç Modeli en az iki karakter ve Kiralama Ücreti sıfır liradan yüksek olmalıdır.");
+            }
             
         }
 
