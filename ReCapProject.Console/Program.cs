@@ -12,14 +12,16 @@ namespace ReCapProject.Console
         {
             CarManager carManager = new CarManager(new EfCarDal());
 
-            carManager.Add(new Car
-            {
-                BrandId = 2,
-                ColorId = 3,
-                Description = "Fiat",
-                DailyPrice = 120,
-                ModelYear = 2015
-            });
+            
+
+            //carManager.Add(new Car
+            //{
+            //    BrandId = 2,
+            //    ColorId = 3,
+            //    Description = "Fiat",
+            //    DailyPrice = 120,
+            //    ModelYear = 2015
+            //});
 
             //carManager.Update(new Car
             //{
@@ -41,10 +43,10 @@ namespace ReCapProject.Console
             //    ModelYear = 2016
             //});
 
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetCarDetails())
             {
-                System.Console.WriteLine("Marka:{0} Model:{1} Kiralama Ücreti:{2}",car.Description,car.ModelYear,car.DailyPrice );
-                
+                //System.Console.WriteLine("Marka:{0} Model:{1} Kiralama Ücreti:{2}",car.Description,car.ModelYear,car.DailyPrice ); //GetAll için
+                System.Console.WriteLine("Araba Adı:{0} / Marka Adı:{1} / Renk Adı:{2} / Kiralama Ücreti:{3}",car.Description,car.BrandName,car.ColorName,car.DailyPrice);
             }
         }
     }

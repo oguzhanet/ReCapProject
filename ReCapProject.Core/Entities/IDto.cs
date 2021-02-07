@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ReCapProject.Entities.Abstract
+namespace ReCapProject.Core.Entities
 {
-    public interface IEntity
+    public interface IDto
     {
     }
 }

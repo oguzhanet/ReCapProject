@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using ReCapProject.DataAccess.Abstract;
 using ReCapProject.Entities.Concrete;
+using ReCapProject.Entities.DTOs;
 
 namespace ReCapProject.DataAccess.Concrete.InMemory
 {
@@ -111,6 +112,11 @@ namespace ReCapProject.DataAccess.Concrete.InMemory
         {
             Car carToDelete = _cars.SingleOrDefault(c => c.CarId == car.CarId);
             _cars.Remove(carToDelete);
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            throw new NotImplementedException();
         }
     }
 }
