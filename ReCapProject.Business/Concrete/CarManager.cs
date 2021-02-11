@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ReCapProject.Business.Abstract;
+using ReCapProject.Business.Constants;
+using ReCapProject.Core.Utilities.Results;
 using ReCapProject.DataAccess.Abstract;
 using ReCapProject.Entities.Concrete;
 using ReCapProject.Entities.DTOs;
 
 namespace ReCapProject.Business.Concrete
 {
-    public class CarManager:ICarService
+    public class CarManager : ICarService
     {
         private ICarDal _carDal;
 
@@ -18,52 +20,57 @@ namespace ReCapProject.Business.Concrete
             _carDal = carDal;
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-           return _carDal.GetAll();
-        }
-
-        public List<Car> GetCarsByCarId(int carId)
-        {
-            return _carDal.GetAll(c => c.CarId == carId);
-        }
-
-        public List<Car> GetCarsByBrandId(int brandId)
-        {
-            return _carDal.GetAll(c => c.BrandId == brandId);
-        }
-
-        public List<Car> GetCarsByColorId(int colorId)
-        {
-            return _carDal.GetAll(c => c.ColorId == colorId);
-        }
-
-        public List<CarDetailDto> GetCarDetails()
-        {
-            return _carDal.GetCarDetails();
-        }
-
-        public void Add(Car car)
-        {
-            if (car.Description.Length>=2&&car.DailyPrice>0)
+            if (DateTime.Now.Hour==15)
             {
-                _carDal.Add(car);
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
-            else
-            {
-                throw new Exception("Araç Modeli en az iki karakter ve Kiralama Ücreti sıfır liradan yüksek olmalıdır.");
-            }
-            
+            return new SuccessDataResult<List<Car>>( _carDal.GetAll(),Messages.ProductListed);
         }
 
-        public void Update(Car car)
+        public IDataResult<List<Car>> GetCarsByCarId(int carId)
+        {
+            return new SuccessDataResult<List<Car>>( _carDal.GetAll(c => c.CarId == carId));
+        }
+
+        public IDataResult<List<Car>> GetCarsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<Car>>( _carDal.GetAll(c => c.BrandId == brandId));
+        }
+
+        public IDataResult<List<Car>> GetCarsByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<Car>>( _carDal.GetAll(c => c.ColorId == colorId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>( _carDal.GetCarDetails());
+        }
+
+        public IResult Add(Car car)
+        {
+            if (car.Description.Length <= 2 && car.DailyPrice <= 0)
+            {
+                return new ErrorResult(Messages.CarNameAndPriceInvalid);
+                
+            }
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
+
+        }
+
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
-            _carDal.Delete(car);
+            _carDal.Update(car);
+            return new SuccessResult(Messages.CarDeleted);
         }
     }
 }

@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReCapProject.Console", "ReCapProject.Console\ReCapProject.Console.csproj", "{AFAA80AE-B846-4583-AF12-B168B76CA4D8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReCapProject.DataAccess", "ReCapProject.DataAccess\ReCapProject.DataAccess.csproj", "{48C48F25-B803-42B4-98B1-527AE583A958}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReCapProject.Business", "ReCapProject.Business\ReCapProject.Business.csproj", "{ECED19DD-DF0B-4317-BF6D-BC96C93795C9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReCapProject.Entities", "ReCapProject.Entities\ReCapProject.Entities.csproj", "{D783730E-5CA4-4D26-82D9-20AB8F4D72E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReCapProject.Core", "ReCapProject.Core\ReCapProject.Core.csproj", "{B6230612-E5A7-4061-B41B-B1250AFA2BC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReCapProject.Core", "ReCapProject.Core\ReCapProject.Core.csproj", "{B6230612-E5A7-4061-B41B-B1250AFA2BC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReCapProject.Console", "ReCapProject.Console\ReCapProject.Console.csproj", "{B206DB01-8F0A-4433-A0C3-9BD8F092890C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AFAA80AE-B846-4583-AF12-B168B76CA4D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AFAA80AE-B846-4583-AF12-B168B76CA4D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFAA80AE-B846-4583-AF12-B168B76CA4D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFAA80AE-B846-4583-AF12-B168B76CA4D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{48C48F25-B803-42B4-98B1-527AE583A958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{48C48F25-B803-42B4-98B1-527AE583A958}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48C48F25-B803-42B4-98B1-527AE583A958}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{B6230612-E5A7-4061-B41B-B1250AFA2BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6230612-E5A7-4061-B41B-B1250AFA2BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6230612-E5A7-4061-B41B-B1250AFA2BC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B206DB01-8F0A-4433-A0C3-9BD8F092890C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B206DB01-8F0A-4433-A0C3-9BD8F092890C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B206DB01-8F0A-4433-A0C3-9BD8F092890C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B206DB01-8F0A-4433-A0C3-9BD8F092890C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
