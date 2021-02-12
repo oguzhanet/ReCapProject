@@ -26,7 +26,7 @@ namespace ReCapProject.Business.Concrete
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
-            return new SuccessDataResult<List<Car>>( _carDal.GetAll(),Messages.ProductListed);
+            return new SuccessDataResult<List<Car>>( _carDal.GetAll(),Messages.Listed);
         }
 
         public IDataResult<List<Car>> GetCarsByCarId(int carId)
@@ -57,20 +57,20 @@ namespace ReCapProject.Business.Concrete
                 
             }
             _carDal.Add(car);
-            return new SuccessResult(Messages.CarAdded);
+            return new SuccessResult(Messages.Added);
 
         }
 
         public IResult Update(Car car)
         {
             _carDal.Update(car);
-            return new SuccessResult(Messages.CarUpdated);
+            return new SuccessResult(Messages.Updated);
         }
 
         public IResult Delete(Car car)
         {
             _carDal.Update(car);
-            return new SuccessResult(Messages.CarDeleted);
+            return new SuccessResult(Messages.Deleted);
         }
     }
 }

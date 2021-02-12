@@ -1,6 +1,7 @@
 ﻿using System;
 using ReCapProject.Business.Concrete;
 using ReCapProject.Business.Constants;
+using ReCapProject.DataAccess.Abstract;
 using ReCapProject.DataAccess.Concrete.EntityFramework;
 using ReCapProject.Entities.Concrete;
 
@@ -10,9 +11,43 @@ namespace ReCapProject.Console
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
-
             //CarAddUpdateDeleteTest(carManager);
+            //CarManagerTest();
+
+            RentalManagerAddTest();
+            //RentalUpdateTest();
+        }
+
+        private static void RentalUpdateTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.Update(new Rental
+            {
+                RentalId = 1,
+                CarId = 1,
+                CustomerId = 1,
+                RentDate = new DateTime(2021, 2, 15),
+                ReturnDate = new DateTime(2021, 3, 12)
+            });
+            System.Console.WriteLine(result.Message);
+        }
+
+        private static void RentalManagerAddTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.Update(new Rental
+            {
+                CarId = 1,
+                CustomerId = 1,
+                RentDate = new DateTime(2021, 2, 15),
+                ReturnDate = new DateTime(2021, 3, 12)
+            });
+            System.Console.WriteLine(result.Message);
+        }
+
+        private static void CarManagerTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetAll();
 
             if (result.Success == true)
@@ -20,14 +55,13 @@ namespace ReCapProject.Console
                 foreach (var car in result.Data)
                 {
                     //Console.WriteLine("Marka:{0} Model:{1} Kiralama Ücreti:{2}",car.Description,car.ModelYear,car.DailyPrice ); //GetAll için
-                    System.Console.WriteLine("Araba Adı:{0} / Kiralama Ücreti:{1}", car.Description,car.DailyPrice);
+                    System.Console.WriteLine("Araba Adı:{0} / Kiralama Ücreti:{1}", car.Description, car.DailyPrice);
                 }
             }
             else
             {
                 System.Console.WriteLine(result.Message);
             }
-
         }
 
         private static void CarAddUpdateDeleteTest(CarManager carManager)
