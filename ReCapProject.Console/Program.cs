@@ -24,10 +24,10 @@ namespace ReCapProject.Console
             var result = rentalManager.Update(new Rental
             {
                 RentalId = 1,
-                CarId = 1,
+                CarId = 3,
                 CustomerId = 1,
                 RentDate = new DateTime(2021, 2, 15),
-                ReturnDate = new DateTime(2021, 3, 12)
+                ReturnDate = new DateTime(2021, 4, 11)
             });
             System.Console.WriteLine(result.Message);
         }
@@ -35,12 +35,12 @@ namespace ReCapProject.Console
         private static void RentalManagerAddTest()
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            var result = rentalManager.Update(new Rental
+            var result = rentalManager.Add(new Rental
             {
-                CarId = 1,
+                CarId = 2,
                 CustomerId = 1,
-                RentDate = new DateTime(2021, 2, 15),
-                ReturnDate = new DateTime(2021, 3, 12)
+                RentDate = new DateTime(2021, 3, 15),
+                ReturnDate = new DateTime(2021, 5, 12)
             });
             System.Console.WriteLine(result.Message);
         }
