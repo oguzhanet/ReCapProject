@@ -6,7 +6,7 @@ using ReCapProject.Entities.Concrete;
 
 namespace ReCapProject.Business.Abstract
 {
-    interface ICustomerService
+    public interface ICustomerService
     {
         IDataResult<List<Customer>> GetAll();
         IDataResult<List<Customer>> GetCustomersByCustomerId(int customerId);
