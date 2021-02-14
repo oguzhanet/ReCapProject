@@ -17,6 +17,9 @@ namespace WebAPI.Controllers
         public RentalsController(IRentalService rentalService)
         {
             _rentalService = rentalService;
+
+
+
         }
     }
 }
