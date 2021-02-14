@@ -40,6 +40,8 @@ namespace WebAPI
             services.AddSingleton<ICustomerDal, EfCustomerDal>();
             services.AddSingleton<IRentalService, RentalManager>();
             services.AddSingleton<IRentalDal, EfRentalDal>();
+            services.AddSingleton<IUserService, UserManager>();
+            services.AddSingleton<IUserDal, EfUserDal>();
 
         }
 
