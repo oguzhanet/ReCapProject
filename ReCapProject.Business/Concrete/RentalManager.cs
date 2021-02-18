@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using ReCapProject.Business.Abstract;
 using ReCapProject.Business.Constants;
+using ReCapProject.Business.ValidationRules.FluentValidation;
+using ReCapProject.Core.CrossCuttingConcerns.Validation;
 using ReCapProject.Core.Utilities.Results;
 using ReCapProject.DataAccess.Abstract;
 using ReCapProject.Entities.Concrete;
@@ -29,11 +31,13 @@ namespace ReCapProject.Business.Concrete
         }
 
         public IResult Add(Rental rental)
-        {
-            if (rental.ReturnDate == null || rental.RentDate.Date > rental.ReturnDate.Date)
-            {
-                return new ErrorResult(Messages.CarNotRented);
-            }
+        {   
+            //İf in kapalı olan bölümünü RentalValidator de yazdım oyüzden burayı kapattım nasıl yazdığımı inceleyin diye silmedim.
+            //if (/*rental.ReturnDate == null || */rental.RentDate.Date > rental.ReturnDate.Date)
+            //{
+            //    return new ErrorResult(Messages.CarNotRented);
+            //}
+            ValidationTool.Validate(new RentalValidator(), rental);
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.CarRented);
 
