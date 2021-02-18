@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using ReCapProject.Business.Abstract;
 using ReCapProject.Business.Constants;
+using ReCapProject.Business.ValidationRules.FluentValidation;
+using ReCapProject.Core.CrossCuttingConcerns.Validation;
 using ReCapProject.Core.Utilities.Results;
 using ReCapProject.DataAccess.Abstract;
 using ReCapProject.Entities.Concrete;
@@ -51,11 +53,7 @@ namespace ReCapProject.Business.Concrete
 
         public IResult Add(Car car)
         {
-            if (car.Description.Length <= 2 && car.DailyPrice <= 0)
-            {
-                return new ErrorResult(Messages.CarNameAndPriceInvalid);
-                
-            }
+            ValidationTool.Validate(new CarValidator(), car);
             _carDal.Add(car);
             return new SuccessResult(Messages.Added);
 
