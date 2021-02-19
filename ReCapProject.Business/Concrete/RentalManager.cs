@@ -4,6 +4,7 @@ using System.Text;
 using ReCapProject.Business.Abstract;
 using ReCapProject.Business.Constants;
 using ReCapProject.Business.ValidationRules.FluentValidation;
+using ReCapProject.Core.Aspects.Validation;
 using ReCapProject.Core.CrossCuttingConcerns.Validation;
 using ReCapProject.Core.Utilities.Results;
 using ReCapProject.DataAccess.Abstract;
@@ -30,6 +31,7 @@ namespace ReCapProject.Business.Concrete
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.RentalId == rentalId));
         }
 
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {   
             //İf in kapalı olan bölümünü RentalValidator de yazdım oyüzden burayı kapattım nasıl yazdığımı inceleyin diye silmedim.
@@ -37,7 +39,6 @@ namespace ReCapProject.Business.Concrete
             //{
             //    return new ErrorResult(Messages.CarNotRented);
             //}
-            ValidationTool.Validate(new RentalValidator(), rental);
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.CarRented);
 

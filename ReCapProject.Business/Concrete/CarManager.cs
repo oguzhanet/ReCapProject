@@ -5,6 +5,7 @@ using System.Text;
 using ReCapProject.Business.Abstract;
 using ReCapProject.Business.Constants;
 using ReCapProject.Business.ValidationRules.FluentValidation;
+using ReCapProject.Core.Aspects.Validation;
 using ReCapProject.Core.CrossCuttingConcerns.Validation;
 using ReCapProject.Core.Utilities.Results;
 using ReCapProject.DataAccess.Abstract;
@@ -51,9 +52,9 @@ namespace ReCapProject.Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>( _carDal.GetCarDetails());
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            ValidationTool.Validate(new CarValidator(), car);
             _carDal.Add(car);
             return new SuccessResult(Messages.Added);
 

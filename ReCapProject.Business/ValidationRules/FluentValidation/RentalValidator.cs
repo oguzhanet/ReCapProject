@@ -13,14 +13,14 @@ namespace ReCapProject.Business.ValidationRules.FluentValidation
             RuleFor(r => r.CarId).NotEmpty();
             RuleFor(r => r.CustomerId).NotEmpty();
             RuleFor(r => r.RentDate).NotEmpty();
-            RuleFor(r => r.RentDate).Must(RentalDateCannotBeLessThanTodayDate).WithMessage("Verilen tarih bugünün tarihinden küçük olmalıdır!");
+            RuleFor(r => r.RentDate).Must(RentalDateCannotBeLessThanTodayDate).WithMessage("Verilen tarih bugünün tarihinden küçük olmamalıdır!");
             RuleFor(r => r.ReturnDate).NotEmpty();
             RuleFor(r => r.ReturnDate).Must(DeliveryDateShouldBeGreater).WithMessage("Verilen tarih bugünün tarihinden büyük olmalıdır!");
         }
         
         private bool RentalDateCannotBeLessThanTodayDate(DateTime arg)
         {
-            return arg.Date < DateTime.Today;
+            return arg.Date >= DateTime.Today;
         }
 
         private bool DeliveryDateShouldBeGreater(DateTime arg)

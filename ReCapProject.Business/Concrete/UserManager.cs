@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using ReCapProject.Business.Abstract;
 using ReCapProject.Business.Constants;
+using ReCapProject.Business.ValidationRules.FluentValidation;
+using ReCapProject.Core.Aspects.Validation;
 using ReCapProject.Core.Utilities.Results;
 using ReCapProject.DataAccess.Abstract;
 using ReCapProject.Entities.Concrete;
@@ -28,6 +30,7 @@ namespace ReCapProject.Business.Concrete
             return new SuccessDataResult<List<User>>(_userDal.GetAll(u=>u.UserId==userId));
         }
 
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
             _userDal.Add(user);
