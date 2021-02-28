@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ReCapProject.Business.Constants
+﻿namespace ReCapProject.Business.Constants
 {
     public static class Messages
     {
@@ -12,7 +8,13 @@ namespace ReCapProject.Business.Constants
         public static string Deleted = "Silindi.";
         public static string Listed = "Listelendi.";
         public static string MaintenanceTime = "Site bakımdadır.";
-        internal static string CarNotRented="Araç kiralanamadı.";
-        internal static string CarRented="Araç kiralandı.";
+        public static string CarNotRented = "Araç kiralanamadı.";
+        public static string CarRented = "Araç kiralandı.";
+        public static string ProductNameAlreadyExists = "Aynı isimde ürün bulunmaktadır.";
+        public static string ImageLimit = "Fotoğraf limiti aşıldı.";
+        public static string ImageLimitExpiredForCar = "Bir arabaya maximum 5 fotoğraf eklenebilir";
+        public static string[] ValidImageFileTypes = { ".JPG", ".JPEG", ".PNG", ".TIF", ".TIFF", ".GIF", ".BMP", ".ICO" };
+        public static string InvalidImageExtension = "Geçersiz dosya uzantısı, fotoğraf için kabul edilen uzantılar" + string.Join(",", ValidImageFileTypes);
+        public static string CarImageMustBeExists = "Böyle bi resim bulunamadı";
     }
 }

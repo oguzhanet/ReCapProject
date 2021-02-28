@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReCapProject.Core", "ReCapP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReCapProject.Console", "ReCapProject.Console\ReCapProject.Console.csproj", "{B206DB01-8F0A-4433-A0C3-9BD8F092890C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{7FE07786-7CE7-4B4B-92BA-FEACDB0C8171}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{7FE07786-7CE7-4B4B-92BA-FEACDB0C8171}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

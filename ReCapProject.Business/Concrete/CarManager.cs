@@ -7,6 +7,7 @@ using ReCapProject.Business.Constants;
 using ReCapProject.Business.ValidationRules.FluentValidation;
 using ReCapProject.Core.Aspects.Validation;
 using ReCapProject.Core.CrossCuttingConcerns.Validation;
+using ReCapProject.Core.Utilities.Business;
 using ReCapProject.Core.Utilities.Results;
 using ReCapProject.DataAccess.Abstract;
 using ReCapProject.Entities.Concrete;
@@ -55,6 +56,11 @@ namespace ReCapProject.Business.Concrete
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
+            IResult result = BusinessRules.Run(CheckIfProductNameExists(car.Description));
+            if (result!=null)
+            {
+                return result;
+            }
             _carDal.Add(car);
             return new SuccessResult(Messages.Added);
 
@@ -71,5 +77,16 @@ namespace ReCapProject.Business.Concrete
             _carDal.Update(car);
             return new SuccessResult(Messages.Deleted);
         }
+
+        private IResult CheckIfProductNameExists(string firstName)
+        {
+            var result = _carDal.GetAll(c => c.Description == firstName).Any();
+            if (result)
+            {
+                return new ErrorResult(Messages.ProductNameAlreadyExists);
+            }
+            return new SuccessResult();
+        }
+
     }
 }
