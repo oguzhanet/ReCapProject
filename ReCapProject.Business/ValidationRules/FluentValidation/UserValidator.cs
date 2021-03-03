@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
+using ReCapProject.Core.Entities.Concrete;
 using ReCapProject.Entities.Concrete;
 
 namespace ReCapProject.Business.ValidationRules.FluentValidation
@@ -14,7 +15,6 @@ namespace ReCapProject.Business.ValidationRules.FluentValidation
             RuleFor(u => u.LastName).NotEmpty();
             RuleFor(u => u.Email).NotEmpty();
             RuleFor(u => u.Email).EmailAddress();
-            RuleFor(u => u.Password).NotEmpty();
         }
     }
 }

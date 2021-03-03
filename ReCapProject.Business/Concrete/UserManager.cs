@@ -5,6 +5,7 @@ using ReCapProject.Business.Abstract;
 using ReCapProject.Business.Constants;
 using ReCapProject.Business.ValidationRules.FluentValidation;
 using ReCapProject.Core.Aspects.Validation;
+using ReCapProject.Core.Entities.Concrete;
 using ReCapProject.Core.Utilities.Results;
 using ReCapProject.DataAccess.Abstract;
 using ReCapProject.Entities.Concrete;
@@ -47,6 +48,16 @@ namespace ReCapProject.Business.Concrete
         {
             _userDal.Delete(user);
             return new SuccessResult(Messages.Deleted);
+        }
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _userDal.GetClaims(user);
+        }
+
+        public User GetByMail(string email)
+        {
+            return _userDal.Get(u => u.Email == email);
         }
     }
 }
