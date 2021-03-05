@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using ReCapProject.Business.Abstract;
 using ReCapProject.Business.Concrete;
+using ReCapProject.Core.DependencyResolvers;
+using ReCapProject.Core.Extensions;
 using ReCapProject.Core.Utilities.IoC;
 using ReCapProject.Core.Utilities.Security.Encryption;
 using ReCapProject.Core.Utilities.Security.JWT;
@@ -65,8 +67,11 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            ServiceTool.Create(services);
+
+            services.AddDependencyResolvers(new ICoreModule[]
+            {
+                new CoreModule()
+            });
 
         }
 

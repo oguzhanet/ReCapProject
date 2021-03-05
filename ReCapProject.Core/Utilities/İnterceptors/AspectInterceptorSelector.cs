@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Castle.DynamicProxy;
+using ReCapProject.Core.Aspects.Performance;
 
 namespace ReCapProject.Core.Utilities.İnterceptors
 {
@@ -16,6 +17,7 @@ namespace ReCapProject.Core.Utilities.İnterceptors
             var methodAttributes = type.GetMethod(method.Name)
                 .GetCustomAttributes<MethodInterceptionBaseAttribute>(true);
             classAttributes.AddRange(methodAttributes);
+            classAttributes.Add(new PerformanceAspect(5));
 
             return classAttributes.OrderBy(x => x.Priority).ToArray();
         }

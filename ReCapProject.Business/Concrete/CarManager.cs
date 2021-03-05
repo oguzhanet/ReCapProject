@@ -6,6 +6,9 @@ using ReCapProject.Business.Abstract;
 using ReCapProject.Business.BusinessAspects.Autofac;
 using ReCapProject.Business.Constants;
 using ReCapProject.Business.ValidationRules.FluentValidation;
+using ReCapProject.Core.Aspects.Caching;
+using ReCapProject.Core.Aspects.Performance;
+using ReCapProject.Core.Aspects.Transaction;
 using ReCapProject.Core.Aspects.Validation;
 using ReCapProject.Core.CrossCuttingConcerns.Validation;
 using ReCapProject.Core.Utilities.Business;
@@ -25,6 +28,7 @@ namespace ReCapProject.Business.Concrete
             _carDal = carDal;
         }
 
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour==15)
@@ -34,6 +38,8 @@ namespace ReCapProject.Business.Concrete
             return new SuccessDataResult<List<Car>>( _carDal.GetAll(),Messages.Listed);
         }
 
+        [CacheAspect]
+        //[PerformanceAspect(5)] Core katmanındaki AspectInterceptorSelector ekledim(Her methodu takip etsın diye)
         public IDataResult<List<Car>> GetCarsByCarId(int carId)
         {
             return new SuccessDataResult<List<Car>>( _carDal.GetAll(c => c.CarId == carId));
@@ -56,6 +62,7 @@ namespace ReCapProject.Business.Concrete
 
         [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
             IResult result = BusinessRules.Run(CheckIfProductNameExists(car.Description));
@@ -68,16 +75,27 @@ namespace ReCapProject.Business.Concrete
 
         }
 
+        [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);
             return new SuccessResult(Messages.Updated);
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
             _carDal.Update(car);
             return new SuccessResult(Messages.Deleted);
+        }
+
+        [TransactionScopeAspect]
+        public IResult TransactionalOperation(Car car)
+        {
+            _carDal.Update(car);
+            _carDal.Add(car);
+            return new SuccessResult(Messages.Updated);
         }
 
         private IResult CheckIfProductNameExists(string firstName)
