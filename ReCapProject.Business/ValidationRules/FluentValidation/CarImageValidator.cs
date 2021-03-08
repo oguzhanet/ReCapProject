@@ -11,8 +11,6 @@ namespace ReCapProject.Business.ValidationRules.FluentValidation
         public CarImageValidator()
         {
             RuleFor(p => p.CarId).NotEmpty();
-            //RuleFor(p => p.ImagePath).NotEmpty();
-            //RuleFor(c => c.Date).Null();
         }
     }
 }

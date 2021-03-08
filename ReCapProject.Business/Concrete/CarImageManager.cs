@@ -18,11 +18,13 @@ namespace ReCapProject.Business.Concrete
     public class CarImageManager : ICarImageService
     {
         ICarImageDal _carImageDal;
+
         public CarImageManager(ICarImageDal carImageDal)
         {
             _carImageDal = carImageDal;
         }
         [ValidationAspect(typeof(CarImageValidator))]
+        
         public IResult Add(CarImage carImage, IFormFile file)
         {
             IResult result = BusinessRules.Run(
@@ -35,7 +37,7 @@ namespace ReCapProject.Business.Concrete
                 return result;
             }
 
-            carImage.ImagePath = CarImagesFileHelper.Add(file);
+            carImage.ImagePath = FileHelper.Add(file);
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
             return new SuccessResult();
@@ -51,7 +53,7 @@ namespace ReCapProject.Business.Concrete
                 return result;
             }
             string path = GetById(carImage.Id).Data.ImagePath;
-            CarImagesFileHelper.Delete(path);
+            FileHelper.Delete(path);
             _carImageDal.Delete(carImage);
             return new SuccessResult();
         }
@@ -86,7 +88,7 @@ namespace ReCapProject.Business.Concrete
 
             carImage.Date = DateTime.Now;
             string OldPath = GetById(carImage.Id).Data.ImagePath;
-            CarImagesFileHelper.Update(file, OldPath);
+            FileHelper.Update(file, OldPath);
             _carImageDal.Update(carImage);
             return new SuccessResult();
         }

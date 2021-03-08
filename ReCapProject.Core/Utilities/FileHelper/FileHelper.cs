@@ -5,7 +5,7 @@ using ReCapProject.Core.Utilities.Results;
 
 namespace ReCapProject.Core.Utilities.FileHelper
 {
-    public class CarImagesFileHelper
+    public class FileHelper
     {
         public static string Add(IFormFile file)
         {
@@ -27,21 +27,21 @@ namespace ReCapProject.Core.Utilities.FileHelper
             return imagePath.Replace("\\", "/");
         }
 
-        public static void Update(IFormFile file, string OldPath)
+        public static void Update(IFormFile file, string oldPath)
         {
             string extension = Path.GetExtension(file.FileName).ToUpper();
-            using (FileStream fileStream = File.Open(OldPath.Replace("/", "\\"), FileMode.Open))
+            using (FileStream fileStream = File.Open(oldPath.Replace("/", "\\"), FileMode.Open))
             {
                 file.CopyToAsync(fileStream);
                 fileStream.Flush();
             }
         }
 
-        public static void Delete(string ImagePath)
+        public static void Delete(string imagePath)
         {
-            if (File.Exists(ImagePath.Replace("/", "\\")) && Path.GetFileName(ImagePath) != "default.png")
+            if (File.Exists(imagePath.Replace("/", "\\")) && Path.GetFileName(imagePath) != "default.png")
             {
-                File.Delete(ImagePath.Replace("/", "\\"));
+                File.Delete(imagePath.Replace("/", "\\"));
             }
         }
 
