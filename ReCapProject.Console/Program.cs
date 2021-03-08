@@ -50,11 +50,11 @@ namespace ReCapProject.Console
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetAll();
 
-            if (result.Success == true)
+            if (result.Success)
             {
                 foreach (var car in result.Data)
                 {
-                    //Console.WriteLine("Marka:{0} Model:{1} Kiralama Ücreti:{2}",car.Description,car.ModelYear,car.DailyPrice ); //GetAll için
+                    //Console.WriteLine("Marka:{0} Model:{1} Kiralama Ücreti:{2}",car.Description,car.ModelYear,car.DailyPrice );
                     System.Console.WriteLine("Araba Adı:{0} / Kiralama Ücreti:{1}", car.Description, car.DailyPrice);
                 }
             }
@@ -66,8 +66,6 @@ namespace ReCapProject.Console
 
         private static void CarAddUpdateDeleteTest(CarManager carManager)
         {
-
-
             carManager.Add(new Car
             {
                 BrandId = 1,
@@ -76,8 +74,6 @@ namespace ReCapProject.Console
                 DailyPrice = 152,
                 ModelYear = 2015
             });
-
-
 
             //carManager.Update(new Car
             //{
