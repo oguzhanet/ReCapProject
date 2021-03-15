@@ -9,6 +9,7 @@ using ReCapProject.Core.CrossCuttingConcerns.Validation;
 using ReCapProject.Core.Utilities.Results;
 using ReCapProject.DataAccess.Abstract;
 using ReCapProject.Entities.Concrete;
+using ReCapProject.Entities.DTOs;
 
 namespace ReCapProject.Business.Concrete
 {
@@ -29,6 +30,11 @@ namespace ReCapProject.Business.Concrete
         public IDataResult<List<Rental>> GetRentalsByRentalId(int rentalId)
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.RentalId == rentalId));
+        }
+
+        public IDataResult<List<RentalDetailDto>> GetRentalDetails()
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
         }
 
         [ValidationAspect(typeof(RentalValidator))]

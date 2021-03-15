@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using ReCapProject.Core.Entities.Concrete;
 using ReCapProject.Entities.Concrete;
+using ReCapProject.Entities.DTOs;
 
 namespace ReCapProject.DataAccess.Concrete.EntityFramework
 {
@@ -23,5 +24,6 @@ namespace ReCapProject.DataAccess.Concrete.EntityFramework
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+
     }
 }
