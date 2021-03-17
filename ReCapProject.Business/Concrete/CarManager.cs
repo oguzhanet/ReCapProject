@@ -55,6 +55,16 @@ namespace ReCapProject.Business.Concrete
             return new SuccessDataResult<List<Car>>( _carDal.GetAll(c => c.ColorId == colorId));
         }
 
+        public IDataResult<List<CarDetailDto>> GetCarsDetailsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c=>c.BrandId==brandId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarsDetailsByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c=>c.ColorId==colorId));
+        }
+
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             return new SuccessDataResult<List<CarDetailDto>>( _carDal.GetCarDetails());
