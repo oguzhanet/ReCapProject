@@ -24,6 +24,7 @@ namespace ReCapProject.DataAccess.Concrete.EntityFramework
                              {
                                  CarId = c.CarId,
                                  BrandId = b.BrandId,
+                                 ColorId = cl.ColorId,
                                  Description = c.Description,
                                  DailyPrice = c.DailyPrice,
                                  BrandName = b.BrandName,
