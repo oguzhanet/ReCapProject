@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using ReCapProject.Business.Abstract;
 using ReCapProject.Business.Constants;
@@ -37,6 +38,16 @@ namespace ReCapProject.Business.Concrete
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
         }
 
+        public IDataResult<List<Rental>> GetAllByCarId(int carId)
+        {
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r=>r.CarId==carId));
+        }
+
+        public IDataResult<List<Rental>> GetAllByCustomerId(int customerId)
+        {
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.CustomerId == customerId));
+        }
+
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {   
@@ -61,6 +72,30 @@ namespace ReCapProject.Business.Concrete
         {
             _rentalDal.Delete(rental);
             return new SuccessResult(Messages.Deleted);
+        }
+
+        public IResult IsDelivered(Rental rental)
+        {
+            var result = this.GetAllByCarId(rental.CarId).Data.LastOrDefault();
+            if (result==null || result.ReturnDate !=default)
+            {
+                return new SuccessResult();
+            }
+            return new ErrorResult();
+        }
+
+        public IResult IsRentable(Rental rental)
+        {
+            var result = this.GetAllByCarId(rental.CarId).Data.LastOrDefault();
+            if (IsDelivered(rental).Success || (
+                !(rental.RentDate < result.ReturnDate && rental.RentDate > result.RentDate) &&
+                !(rental.ReturnDate < result.ReturnDate && rental.ReturnDate > result.RentDate) &&
+                !(rental.RentDate < result.RentDate && rental.ReturnDate > result.ReturnDate) &&
+                rental.RentDate >= DateTime.Now))
+            {
+                return new SuccessResult();
+            }
+            return new ErrorResult();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace ReCapProject.Business.ValidationRules.FluentValidation
             RuleFor(r => r.RentDate).NotEmpty();
             RuleFor(r => r.RentDate).Must(RentalDateCannotBeLessThanTodayDate).WithMessage("Verilen tarih bugünün tarihinden küçük olmamalıdır!");
             RuleFor(r => r.ReturnDate).NotEmpty();
-            RuleFor(r => r.ReturnDate).Must(DeliveryDateShouldBeGreater).WithMessage("Verilen tarih bugünün tarihinden büyük olmalıdır!");
+            //RuleFor(r => r.ReturnDate).Must(DeliveryDateShouldBeGreater).WithMessage("Verilen tarih bugünün tarihinden büyük olmalıdır!");
         }
         
         private bool RentalDateCannotBeLessThanTodayDate(DateTime arg)

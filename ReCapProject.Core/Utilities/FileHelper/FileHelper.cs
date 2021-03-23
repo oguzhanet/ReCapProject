@@ -7,7 +7,6 @@ namespace ReCapProject.Core.Utilities.FileHelper
 {
     public class FileHelper
     {
-        
         static string directory = Directory.GetCurrentDirectory() + @"\wwwroot\";
         static string path = @"Images\";
         public static string Add(IFormFile file)

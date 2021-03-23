@@ -29,11 +29,12 @@ namespace ReCapProject.DataAccess.Concrete.EntityFramework
                                  BrandName = b.BrandName,
                                  ModelYear=c.ModelYear,
                                  ColorName = cl.ColorName
-                                
+                                 
 
                              };
                 return result.ToList();
             }
         }
+
     }
 }
