@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FluentValidation.Results;
 using Newtonsoft.Json;
 
 namespace ReCapProject.Core.Extensions
@@ -14,5 +15,10 @@ namespace ReCapProject.Core.Extensions
         {
             return JsonConvert.SerializeObject(this);
         }
+    }
+
+    public class ValidationErrorDetails : ErrorDetails
+    {
+        public IEnumerable<ValidationFailure> Errors { get; set; }
     }
 }
