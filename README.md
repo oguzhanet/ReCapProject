@@ -1,4 +1,4 @@
-# ReCapProject (Rent a Car Back-end)
+# ReCapProject (Rent A Car Back-end)
 
 
 ## Introduction
