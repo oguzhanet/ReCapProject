@@ -32,6 +32,18 @@ If you want to check content of entity when add, update etc. operations you can 
 - TransactionAsepct <br/>
 You can understand better if you examine the classes in the concrete folder in the business layer.
 
+## Database objects
+- Brand
+- Car
+- CarImage
+- Color
+- Customer
+- FakeCard
+- Rental
+- OperationClaim(In the core layer)
+- UserOperationClaim(In the core layer)
+- User(In the core layer)
+
 ## Nuget Packages and Their Versions
 - Autofac - Version = v6.1.0
 - Autofac.Extensions.DependencyInjection - Version = v7.1.0
