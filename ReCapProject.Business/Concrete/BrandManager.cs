@@ -30,6 +30,11 @@ namespace ReCapProject.Business.Concrete
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(b=>b.BrandId==brandId));
         }
 
+        public IDataResult<List<Brand>> GetBrandsByName(string brandName)
+        {
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(b=>b.BrandName==brandName),Messages.Successful);
+        }
+
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {

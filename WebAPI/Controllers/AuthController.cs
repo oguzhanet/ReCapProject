@@ -14,10 +14,12 @@ namespace WebAPI.Controllers
     public class AuthController : ControllerBase
     {
         private IAuthService _authService;
+        private IUserService _userService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IUserService userService)
         {
             _authService = authService;
+            _userService = userService;
         }
 
         [HttpPost("login")]
@@ -55,6 +57,63 @@ namespace WebAPI.Controllers
             }
 
             return BadRequest(result.Message);
+        }
+
+        [HttpPost("update")]
+        public ActionResult Update(UserForRegisterDto userForRegisterDto)
+        {
+
+            var registerResult = _authService.Update(userForRegisterDto, userForRegisterDto.Password);
+            if (registerResult.Success)
+            {
+                return Ok(registerResult);
+            }
+
+            return BadRequest(registerResult.Message);
+        }
+
+        [HttpGet("getall")]
+        public IActionResult GetAll()
+        {
+            var result = _userService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int userId)
+        {
+            var result = _userService.GetUsersByUserId(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyemail")]
+        public IActionResult GetByEmail(string email)
+        {
+            var result = _userService.GetByEmail(email);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyname")]
+        public IActionResult GetByName(string name)
+        {
+            var result = _userService.GetByName(name);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }

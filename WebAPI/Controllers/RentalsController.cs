@@ -78,6 +78,32 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpPost("add2")]
+        public IActionResult Add2(Rental rental)
+        {
+            if (_rentalService.GetAll().Data.Count != 0)
+            {
+                if (_rentalService.Rentable(rental))
+                {
+                    var result1 = _rentalService.Add(rental);
+                    if (result1.Success)
+                    {
+                        return Ok(result1);
+                    }
+
+                }
+            }
+
+            var result = _rentalService.Add(rental);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+
+
+        }
+
         [HttpPost("add")]
         public IActionResult Add(Rental rental)
         {

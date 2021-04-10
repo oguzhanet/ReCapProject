@@ -11,7 +11,6 @@ namespace ReCapProject.Entities.Concrete
         public string CardName { get; set; }
         public string CardNumber { get; set; }
         public string CardCvv { get; set; }
-        public decimal MoneyInTheCard { get; set; }
         public string ExpirationDate { get; set; }
     }
 }

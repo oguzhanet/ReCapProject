@@ -10,6 +10,7 @@ namespace ReCapProject.Business.Abstract
     {
         IDataResult<List<Brand>> GetAll();
         IDataResult<List<Brand>> GetBrandsByBrandId(int brandId);
+        IDataResult<List<Brand>> GetBrandsByName(string brandName);
         IResult Add(Brand brand);
         IResult Update(Brand brand);
         IResult Delete(Brand brand);

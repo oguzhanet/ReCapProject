@@ -70,6 +70,11 @@ namespace ReCapProject.Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c=>c.ColorId==colorId));
         }
 
+        public IDataResult<List<CarDetailDto>> GetCarsDetailsByBrandIdAndColorId(int brandId, int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.BrandId == brandId && c.ColorId==colorId));
+        }
+
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             return new SuccessDataResult<List<CarDetailDto>>( _carDal.GetCarDetails());
@@ -99,10 +104,18 @@ namespace ReCapProject.Business.Concrete
         }
 
         [CacheRemoveAspect("ICarService.Get")]
-        public IResult Delete(Car car)
+        public IResult Delete(int carId)
         {
-            _carDal.Update(car);
-            return new SuccessResult(Messages.Deleted);
+            foreach (var id in _carDal.GetAll())
+            {
+                if (id.CarId==carId)
+                {
+                    _carDal.Delete(id);
+                    return new SuccessResult(Messages.Deleted);
+                }
+            }
+            
+            return new ErrorResult("Hata");
         }
 
         [TransactionScopeAspect]

@@ -11,6 +11,8 @@ namespace ReCapProject.Business.Abstract
     {
         IDataResult<List<User>> GetAll();
         IDataResult<List<User>> GetUsersByUserId(int userId);
+        IDataResult<List<User>> GetByEmail(string email);
+        IDataResult<List<User>> GetByName(string name);
         IResult Add(User user);
         IResult Update(User user);
         IResult Delete(User user);

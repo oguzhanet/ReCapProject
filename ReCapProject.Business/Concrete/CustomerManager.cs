@@ -8,6 +8,7 @@ using ReCapProject.Core.Aspects.Validation;
 using ReCapProject.Core.Utilities.Results;
 using ReCapProject.DataAccess.Abstract;
 using ReCapProject.Entities.Concrete;
+using ReCapProject.Entities.DTOs;
 
 namespace ReCapProject.Business.Concrete
 {
@@ -23,6 +24,11 @@ namespace ReCapProject.Business.Concrete
         public IDataResult<List<Customer>> GetAll()
         {
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(),Messages.Listed);
+        }
+
+        public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
+        {
+            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetails());
         }
 
         public IDataResult<List<Customer>> GetCustomersByCustomerId(int customerId)

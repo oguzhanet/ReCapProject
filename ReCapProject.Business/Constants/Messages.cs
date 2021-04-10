@@ -10,6 +10,7 @@ namespace ReCapProject.Business.Constants
         public static string Added = "Eklendi.";
         public static string Deleted = "Silindi.";
         public static string Listed = "Listelendi.";
+        public static string Successful ="Başarılı";  
         public static string MaintenanceTime = "Site bakımdadır.";
         public static string CarNotRented = "Araç kiralanamadı.";
         public static string CarRented = "Araç kiralandı.";

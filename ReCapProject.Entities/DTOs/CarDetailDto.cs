@@ -15,5 +15,6 @@ namespace ReCapProject.Entities.DTOs
         public string ColorName { get; set; }
         public int ModelYear { get; set; }
         public decimal DailyPrice { get; set; }
+        public int Findeks { get; set; }
     }
 }

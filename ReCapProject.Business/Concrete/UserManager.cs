@@ -31,6 +31,16 @@ namespace ReCapProject.Business.Concrete
             return new SuccessDataResult<List<User>>(_userDal.GetAll(u=>u.UserId==userId));
         }
 
+        public IDataResult<List<User>> GetByEmail(string email)
+        {
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(u=>u.Email==email));
+        }
+
+        public IDataResult<List<User>> GetByName(string name)
+        {
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(u=>u.FirstName==name));
+        }
+
         [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {

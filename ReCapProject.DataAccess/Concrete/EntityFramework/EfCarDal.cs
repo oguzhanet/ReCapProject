@@ -29,8 +29,8 @@ namespace ReCapProject.DataAccess.Concrete.EntityFramework
                                  DailyPrice = c.DailyPrice,
                                  BrandName = b.BrandName,
                                  ModelYear=c.ModelYear,
-                                 ColorName = cl.ColorName
-                                 
+                                 ColorName = cl.ColorName,
+                                 Findeks = c.Findeks
 
                              };
                 return result.ToList();

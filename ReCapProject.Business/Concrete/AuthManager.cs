@@ -39,6 +39,24 @@ namespace ReCapProject.Business.Concrete
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
 
+        public IDataResult<User> Update(UserForRegisterDto userForRegisterDto, string password)
+        {
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            var user = new User
+            {
+                UserId = userForRegisterDto.Id,
+                FirstName = userForRegisterDto.FirstName,
+                LastName = userForRegisterDto.LastName,
+                Email = userForRegisterDto.Email,
+                PasswordSalt = passwordSalt,
+                PasswordHash = passwordHash,
+                Status = true
+            };
+            _userService.Update(user);
+            return new SuccessDataResult<User>(user, Messages.Updated);
+        }
+
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
             var userToCheck = _userService.GetByMail(userForLoginDto.Email);

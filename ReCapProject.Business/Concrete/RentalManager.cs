@@ -97,5 +97,17 @@ namespace ReCapProject.Business.Concrete
             }
             return new ErrorResult();
         }
+
+        public bool Rentable(Rental rental)
+        {
+            var result = _rentalDal.GetAll(r => r.CarId == rental.CarId);
+            if (result.Any(r=>r.RentEndDate >= rental.ReturnDate &&
+                              r.RentDate <=rental.RentEndDate))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
