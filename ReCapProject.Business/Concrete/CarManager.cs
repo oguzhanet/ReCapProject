@@ -108,13 +108,13 @@ namespace ReCapProject.Business.Concrete
         {
             foreach (var id in _carDal.GetAll())
             {
-                if (id.CarId==carId)
+                if (id.CarId == carId)
                 {
                     _carDal.Delete(id);
                     return new SuccessResult(Messages.Deleted);
                 }
             }
-            
+
             return new ErrorResult("Hata");
         }
 

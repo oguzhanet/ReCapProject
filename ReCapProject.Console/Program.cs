@@ -1,6 +1,7 @@
 ﻿using System;
 using ReCapProject.Business.Concrete;
 using ReCapProject.Business.Constants;
+using ReCapProject.Core.Utilities.Results;
 using ReCapProject.DataAccess.Abstract;
 using ReCapProject.DataAccess.Concrete.EntityFramework;
 using ReCapProject.Entities.Concrete;
@@ -14,7 +15,7 @@ namespace ReCapProject.Console
             //CarAddUpdateDeleteTest(carManager);
             //CarManagerTest();
 
-            RentalManagerAddTest();
+            //RentalManagerAddTest();
             //RentalUpdateTest();
         }
 
@@ -66,14 +67,14 @@ namespace ReCapProject.Console
 
         private static void CarAddUpdateDeleteTest(CarManager carManager)
         {
-            carManager.Add(new Car
-            {
-                BrandId = 1,
-                ColorId = 2,
-                Description = "ugr",
-                DailyPrice = 152,
-                ModelYear = 2015
-            });
+            //carManager.Add(new Car
+            //{
+            //    BrandId = 1,
+            //    ColorId = 2,
+            //    Description = "ugr",
+            //    DailyPrice = 152,
+            //    ModelYear = 2015
+            //});
 
             //carManager.Update(new Car
             //{
@@ -95,6 +96,9 @@ namespace ReCapProject.Console
             //    ModelYear = 2016
             //}
             //);
+
+        
+           
         }
     }
 }

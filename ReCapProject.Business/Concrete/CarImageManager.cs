@@ -23,8 +23,8 @@ namespace ReCapProject.Business.Concrete
         {
             _carImageDal = carImageDal;
         }
+
         [ValidationAspect(typeof(CarImageValidator))]
-        
         public IResult Add(CarImage carImage, IFormFile file)
         {
             IResult result = BusinessRules.Run(
@@ -87,8 +87,8 @@ namespace ReCapProject.Business.Concrete
             }
 
             carImage.Date = DateTime.Now;
-            string OldPath = GetById(carImage.Id).Data.ImagePath;
-            FileHelper.Update(file, OldPath);
+            string oldPath = GetById(carImage.Id).Data.ImagePath;
+            FileHelper.Update(file, oldPath);
             _carImageDal.Update(carImage);
             return new SuccessResult();
         }
