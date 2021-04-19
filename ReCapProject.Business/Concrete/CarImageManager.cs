@@ -107,7 +107,6 @@ namespace ReCapProject.Business.Concrete
             if (!isValidFileExtension)
                 return new ErrorResult(Messages.InvalidImageExtension);
             return new SuccessResult();
-
         }
 
         private List<CarImage> CheckIfCarHaveNoImage(int carId)

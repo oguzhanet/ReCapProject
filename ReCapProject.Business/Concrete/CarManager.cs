@@ -92,7 +92,6 @@ namespace ReCapProject.Business.Concrete
             }
             _carDal.Add(car);
             return new SuccessResult(Messages.Added);
-
         }
 
         [ValidationAspect(typeof(CarValidator))]
@@ -135,6 +134,5 @@ namespace ReCapProject.Business.Concrete
             }
             return new SuccessResult();
         }
-
     }
 }
