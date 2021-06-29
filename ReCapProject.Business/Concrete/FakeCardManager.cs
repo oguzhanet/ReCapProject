@@ -56,6 +56,7 @@ namespace ReCapProject.Business.Concrete
             var result = _fakeCardDal.Get(f =>
                 f.CardNumber == fakeCard.CardName && f.CardNumber == fakeCard.CardNumber &&
                 f.CardCvv == fakeCard.CardCvv);
+
             if (result==null)
             {
                 return new ErrorResult();
