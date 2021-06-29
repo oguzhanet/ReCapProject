@@ -58,8 +58,6 @@ namespace ReCapProject.Business.Concrete
             //}
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.CarRented);
-
-
         }
 
         public IResult Update(Rental rental)
