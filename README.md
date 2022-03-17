@@ -15,6 +15,7 @@ I learned new techniques and patterns and I developed myself very well. If you n
 
 ## Techniques
 - Layered Architecture Design Pattern
+- OOP
 - AOP
 - JWT
 - Autofac dependency resolver
